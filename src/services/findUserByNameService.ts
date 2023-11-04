@@ -1,0 +1,12 @@
+import { userRepository } from "../repositories/UserRepository";
+
+interface IRequest {
+  name: string;
+}
+
+export class FindUserByNameService {
+  public async execute({ name }: IRequest) {
+    const user = await userRepository.findByName(name);
+    return user;
+  }
+}

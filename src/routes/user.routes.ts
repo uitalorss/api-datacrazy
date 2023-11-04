@@ -20,3 +20,4 @@ userRoutes.put(
   userController.updateUser
 );
 userRoutes.delete("/user/:id", validateUserId, userController.DeleteUser);
+userRoutes.get("/user", userController.getUser);

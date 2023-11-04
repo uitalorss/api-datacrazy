@@ -3,6 +3,13 @@ import { CreateUserService } from "../services/CreateUserService";
 import { ListUserService } from "../services/ListUsersService";
 import { UpdateUserService } from "../services/UpdateUserService";
 import { DeleteUserService } from "../services/DeleteUserService";
+import { FindUserByNameService } from "../services/findUserByNameService";
+import { type } from "os";
+import { BadRequestError } from "../utils/AppError";
+
+interface RequestQuery {
+  name: string;
+}
 
 export class UserController {
   public async CreateUser(req: Request, res: Response) {
@@ -13,6 +20,8 @@ export class UserController {
   }
 
   public async listUsers(req: Request, res: Response) {
+    const { name } = req.query;
+
     const listUserService = new ListUserService();
     const users = await listUserService.execute();
     return res.status(201).json(users);
@@ -38,5 +47,17 @@ export class UserController {
     const deleteUserService = new DeleteUserService();
     await deleteUserService.execute({ userId: Number(id) });
     return res.status(204).send();
+  }
+
+  public async getUser(req: Request, res: Response) {
+    const { name } = req.query;
+    const findUserByName = new FindUserByNameService();
+
+    if (typeof name !== "string") {
+      throw new BadRequestError("Parâmetro de pesquisa inválido");
+    }
+
+    const user = await findUserByName.execute({ name });
+    return res.status(200).json(user);
   }
 }
