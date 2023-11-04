@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CreateUserService } from "../services/CreateUserService";
 import { ListUserService } from "../services/ListUsersService";
 import { UpdateUserService } from "../services/UpdateUserService";
+import { DeleteUserService } from "../services/DeleteUserService";
 
 export class UserController {
   public async CreateUser(req: Request, res: Response) {
@@ -29,6 +30,13 @@ export class UserController {
       email,
       phone,
     });
+    return res.status(204).send();
+  }
+
+  public async DeleteUser(req: Request, res: Response) {
+    const { id } = req.params;
+    const deleteUserService = new DeleteUserService();
+    await deleteUserService.execute({ userId: Number(id) });
     return res.status(204).send();
   }
 }
