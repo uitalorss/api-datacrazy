@@ -22,6 +22,7 @@ export class UserController {
     const { name, email, phone } = req.body;
 
     const updateUserService = new UpdateUserService();
+
     const userToUpdate = await updateUserService.execute({
       userId: Number(id),
       name,
