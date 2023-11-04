@@ -5,3 +5,4 @@ const userController = new UserController();
 export const userRoutes = Router();
 
 userRoutes.post("/user", userController.CreateUser);
+userRoutes.get("/users", userController.listUsers);
