@@ -6,3 +6,4 @@ export const userRoutes = Router();
 
 userRoutes.post("/user", userController.CreateUser);
 userRoutes.get("/users", userController.listUsers);
+userRoutes.put("/user/:id", userController.updateUser);
