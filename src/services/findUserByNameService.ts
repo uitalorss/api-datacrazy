@@ -7,6 +7,11 @@ interface IRequest {
 export class FindUserByNameService {
   public async execute({ name }: IRequest) {
     const user = await userRepository.findByName(name);
-    return user;
+    if (!user) {
+      return [];
+    }
+    const listOfSingleUser = [];
+    listOfSingleUser.push(user);
+    return listOfSingleUser;
   }
 }

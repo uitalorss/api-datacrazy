@@ -60,6 +60,7 @@ export class UserController {
     }
 
     const user = await findUserByName.execute({ name });
+
     return res.status(200).json(user);
   }
 
