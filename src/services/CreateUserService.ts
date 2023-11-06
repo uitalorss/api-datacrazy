@@ -16,7 +16,9 @@ export class CreateUserService {
       },
     });
     if (isEmailAlreadyExists) {
-      throw new BadRequestError("Esse email já está cadastrado");
+      throw new BadRequestError(
+        "Já existe usuário cadastrado com o e-mail informado."
+      );
     }
     await userRepository.save(newUser);
     return newUser;
