@@ -10,8 +10,6 @@ export class FindUserByNameService {
     if (!user) {
       return [];
     }
-    const listOfSingleUser = [];
-    listOfSingleUser.push(user);
-    return listOfSingleUser;
+    return user;
   }
 }

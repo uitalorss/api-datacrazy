@@ -4,7 +4,7 @@ import { Like } from "typeorm";
 
 export const userRepository = AppDataSource.getRepository(User).extend({
   findByName(name: string) {
-    const user = this.findOne({
+    const user = this.find({
       where: {
         name: Like(`%${name}%`),
       },
