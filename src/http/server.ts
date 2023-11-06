@@ -5,6 +5,7 @@ import cors from "cors";
 import { AppDataSource } from "../data-source";
 import { userRoutes } from "../routes/user.routes";
 import { AppError } from "../utils/AppError";
+import { stat } from "fs";
 
 AppDataSource.initialize().then(() => {
   const app = express();
