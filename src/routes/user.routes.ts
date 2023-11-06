@@ -21,3 +21,5 @@ userRoutes.put(
 );
 userRoutes.delete("/user/:id", validateUserId, userController.DeleteUser);
 userRoutes.get("/user", userController.getUser);
+userRoutes.get("/users/younger", userController.getYoungerToOlderUsers);
+userRoutes.get("/users/older", userController.getOlderToYoungerUsers);

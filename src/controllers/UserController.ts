@@ -6,6 +6,8 @@ import { DeleteUserService } from "../services/DeleteUserService";
 import { FindUserByNameService } from "../services/findUserByNameService";
 import { type } from "os";
 import { BadRequestError } from "../utils/AppError";
+import { ListYoungerToOlderUsersService } from "../services/ListYoungerToOlderUsersService";
+import { ListOlderToYoungerUsersService } from "../services/ListOlderToYoungerUsersService";
 
 interface RequestQuery {
   name: string;
@@ -59,5 +61,17 @@ export class UserController {
 
     const user = await findUserByName.execute({ name });
     return res.status(200).json(user);
+  }
+
+  public async getYoungerToOlderUsers(req: Request, res: Response) {
+    const listYoungerToOlderUsersService = new ListYoungerToOlderUsersService();
+    const users = await listYoungerToOlderUsersService.execute();
+    return res.status(200).json(users);
+  }
+
+  public async getOlderToYoungerUsers(req: Request, res: Response) {
+    const listOlderToYoungerUsersService = new ListOlderToYoungerUsersService();
+    const users = await listOlderToYoungerUsersService.execute();
+    return res.status(200).json(users);
   }
 }

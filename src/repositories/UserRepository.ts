@@ -10,4 +10,12 @@ export const userRepository = AppDataSource.getRepository(User).extend({
     });
     return user;
   },
+  getYoungerToOlder() {
+    const users = this.find({ order: { created_at: "ASC" } });
+    return users;
+  },
+  getOlderToYounger() {
+    const users = this.find({ order: { created_at: "DESC" } });
+    return users;
+  },
 });
